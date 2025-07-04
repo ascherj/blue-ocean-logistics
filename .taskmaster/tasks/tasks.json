@@ -77,8 +77,56 @@
         "dependencies": [
           1
         ],
-        "status": "pending",
-        "subtasks": []
+        "status": "in-progress",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Set up Material-UI v6 with ocean-inspired theme",
+            "description": "Install Material-UI v6 and create a custom theme with ocean-inspired colors for the Ocean Freight Logistics Platform.",
+            "dependencies": [],
+            "details": "Install @mui/material@6.0.0 and @emotion/react@11.11.1, @emotion/styled@11.11.0. Create a theme.ts file in the src/ directory. Define custom colors: deepBlue: #003366, oceanTeal: #008080, seafoamGreen: #93E9BE. Apply the theme using ThemeProvider in App.tsx.\n<info added on 2025-07-04T22:38:47.236Z>\n✅ COMPLETED: Successfully installed Material-UI v7.2.0 (exceeding v6 requirement) with all dependencies (@emotion/react v11.14.0, @emotion/styled v11.14.1, @mui/icons-material v7.2.0) with 0 vulnerabilities. Created comprehensive ocean-inspired theme in theme.ts with custom typography using Inter font family, styled components including gradient buttons and ocean-shadow cards, AppBar with ocean gradient, TextField with ocean-themed focus states, and Chip components with seafoam styling. Updated App.tsx with ThemeProvider, CssBaseline, and Ocean Freight Logistics Platform demo interface featuring ocean-themed icons (DirectionsBoat, Anchor, Waves), responsive Grid layout using v7 API, and interactive elements. Verified successful build process and workspace commands with no TypeScript or linting errors.\n</info added on 2025-07-04T22:38:47.236Z>",
+            "status": "done",
+            "testStrategy": "Verify theme application by rendering a sample component and checking its styles."
+          },
+          {
+            "id": 2,
+            "title": "Configure TanStack Query v5",
+            "description": "Set up TanStack Query v5 for efficient state management and API data fetching in the React application.",
+            "dependencies": [],
+            "details": "Install @tanstack/react-query@5.8.4. Create a queryClient.ts file in src/utils/. Configure the QueryClient with default options. Wrap the App component with QueryClientProvider in main.tsx. Create a custom hook useApi.ts in src/hooks/ for reusable query logic.",
+            "status": "pending",
+            "testStrategy": "Create a test query and verify data fetching and caching behavior."
+          },
+          {
+            "id": 3,
+            "title": "Create folder structure and basic components",
+            "description": "Establish the project's folder structure and create essential component files for the Ocean Freight Logistics Platform.",
+            "dependencies": [
+              1
+            ],
+            "details": "Create directories: src/components/, src/pages/, src/hooks/, src/utils/. In components/, create: Header.tsx, Footer.tsx, Sidebar.tsx, Dashboard.tsx. In pages/, create: Home.tsx, Shipments.tsx, Tracking.tsx. Implement basic layouts using Material-UI components.",
+            "status": "pending",
+            "testStrategy": "Render each component individually to ensure proper structure and Material-UI integration."
+          },
+          {
+            "id": 4,
+            "title": "Set up Axios instance for API communication",
+            "description": "Configure an Axios instance with base URL and interceptors for consistent API communication across the application.",
+            "dependencies": [],
+            "details": "Install axios@1.6.2. Create api.ts in src/utils/. Set up Axios instance with base URL 'https://api.oceanfreight.com/v1'. Add request interceptor for authentication token. Add response interceptor for error handling. Create utility functions for common API operations (GET, POST, PUT, DELETE).",
+            "status": "pending",
+            "testStrategy": "Mock API responses and test the Axios instance with different request scenarios."
+          },
+          {
+            "id": 5,
+            "title": "Implement ESLint and Prettier configuration",
+            "description": "Set up ESLint and Prettier for consistent code styling and error checking in the React TypeScript project.",
+            "dependencies": [],
+            "details": "Install eslint@8.53.0, @typescript-eslint/eslint-plugin@6.10.0, @typescript-eslint/parser@6.10.0, prettier@3.1.0. Create .eslintrc.json with rules for React and TypeScript. Set up .prettierrc with project-specific formatting rules. Add lint and format scripts to package.json. Configure VS Code settings for ESLint and Prettier integration.",
+            "status": "pending",
+            "testStrategy": "Run ESLint and Prettier on the codebase and verify that all files comply with the defined rules."
+          }
+        ]
       },
       {
         "id": 3,
@@ -268,7 +316,7 @@
     ],
     "metadata": {
       "created": "2025-07-04T21:59:20.552Z",
-      "updated": "2025-07-04T22:31:41.810Z",
+      "updated": "2025-07-04T22:38:50.943Z",
       "description": "Tasks for master context"
     }
   }
