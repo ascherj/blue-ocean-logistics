@@ -33,6 +33,7 @@ import {
 import { oceanTheme } from './theme';
 import { useShipments } from './hooks/useShipments';
 import type { QueryFilters } from './lib/queryClient';
+import { ApiStatus } from './components/ApiStatus';
 
 function App() {
   const [shipmentCount, setShipmentCount] = useState(42);
@@ -70,7 +71,8 @@ function App() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Ocean Freight Logistics Platform
           </Typography>
-          <Button color="inherit" startIcon={<Anchor />}>
+          <ApiStatus />
+          <Button color="inherit" startIcon={<Anchor />} sx={{ ml: 2 }}>
             Dashboard
           </Button>
         </Toolbar>
@@ -280,7 +282,7 @@ function App() {
                 {shipmentsData && !isLoading && (
                   <>
                     <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-                      Showing {shipmentsData.data.length} of {shipmentsData.total} shipments
+                      Showing {shipmentsData.data.length} of {shipmentsData.pagination.total} shipments
                     </Typography>
 
                     <Grid container spacing={2}>
@@ -398,7 +400,7 @@ function App() {
                         </Typography>
                         <Box sx={{ mb: 2 }}>
                           <Typography variant="h4" color="primary">
-                            {shipmentsData?.total || 0}
+                            {shipmentsData?.pagination.total || 0}
                           </Typography>
                           <Typography variant="body2" color="text.secondary">
                             Active Shipments
