@@ -1,0 +1,275 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 1,
+        "title": "Setup Monorepo Structure",
+        "description": "Initialize the project repository with the specified monorepo structure using the latest versions of React, NestJS, and other required dependencies.",
+        "details": "1. Initialize a new Git repository\n2. Create the folder structure: client/, server/, test/, assets/\n3. Set up root package.json with workspaces\n4. Initialize client with Vite and React 18 (latest version: 18.2.0)\n   - Use command: npm create vite@latest client -- --template react-ts\n5. Initialize server with NestJS (latest version: 10.0.0)\n   - Use command: nest new server\n6. Set up root-level scripts for project-wide commands\n7. Initialize test folder for E2E tests\n8. Create .gitignore file\n9. Set up ESLint with TypeScript rules (latest version: 8.42.0)\n10. Configure Prettier for code formatting (latest version: 2.8.8)",
+        "testStrategy": "Verify the correct folder structure and initialization of each component. Run 'npm run setup' to ensure all dependencies are correctly installed.",
+        "priority": "high",
+        "dependencies": [],
+        "status": "done",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Initialize Git Repository and Folder Structure",
+            "description": "Set up the initial Git repository and create the basic folder structure for the monorepo.",
+            "dependencies": [],
+            "details": "1. Initialize a new Git repository using 'git init'\n2. Create folders: client/, server/, test/, assets/\n3. Create a .gitignore file with common exclusions for Node.js, React, and NestJS projects\n<info added on 2025-07-04T22:07:58.382Z>\n✅ Successfully completed all steps:\n\n1. ✅ Git repository initialized (was already initialized)\n2. ✅ Created monorepo folder structure:\n   - client/ directory created\n   - server/ directory created  \n   - test/ directory created\n   - assets/ directory created\n3. ✅ Created comprehensive .gitignore file with exclusions for:\n   - Node.js dependencies and cache files\n   - React/Vite build outputs\n   - NestJS build outputs\n   - Database files (SQLite, Prisma)\n   - IDE files and OS-specific files\n   - Environment variables\n   - Testing coverage files\n\nAll directories verified to exist and are ready for the next phase of setup.\n</info added on 2025-07-04T22:07:58.382Z>",
+            "status": "done",
+            "testStrategy": "Verify the existence of the repository and folder structure using shell commands"
+          },
+          {
+            "id": 2,
+            "title": "Configure Root Package.json with Workspaces",
+            "description": "Set up the root-level package.json file with workspace configurations and project-wide scripts.",
+            "dependencies": [
+              1
+            ],
+            "details": "1. Create a package.json file in the root directory\n2. Add 'workspaces' field with ['client', 'server']\n3. Set up scripts for project-wide commands (e.g., 'start', 'build', 'test')\n4. Specify 'private: true' to prevent accidental publication\n<info added on 2025-07-04T22:09:43.908Z>\n✅ Successfully completed all steps:\n\n1. Created root package.json file with proper structure:\n   - Set package name to \"blue-ocean-logistics\" matching the PRD\n   - Configured as private package to prevent accidental publication\n   - Added comprehensive project metadata (description, keywords, author, etc.)\n\n2. Configured npm workspaces:\n   - Added workspaces field with ['client', 'server'] \n   - Workspaces configuration validated as valid JSON\n\n3. Set up comprehensive project-wide scripts:\n   - Individual workspace commands (client:dev, server:dev, etc.)\n   - Build commands for both workspaces\n   - Combined start command using concurrently\n   - Testing, linting, and formatting commands\n   - Cleanup and setup utilities\n\n4. Installed root-level dependencies:\n   - concurrently (v8.2.2) for running multiple processes\n   - cross-env (v7.0.3) for cross-platform environment variables\n   - All dependencies installed successfully with no vulnerabilities\n\n5. Additional configurations:\n   - Node.js and npm version requirements (Node >=18.0.0, npm >=9.0.0)\n   - Git hooks setup for development workflow\n   - Repository and bug tracking URLs structure\n</info added on 2025-07-04T22:09:43.908Z>",
+            "status": "done",
+            "testStrategy": "Validate package.json structure and run npm workspace command to ensure correct setup"
+          },
+          {
+            "id": 3,
+            "title": "Initialize Client with Vite and React 18",
+            "description": "Set up the client-side application using Vite and React 18 with TypeScript.",
+            "dependencies": [
+              2
+            ],
+            "details": "1. Run 'npm create vite@latest client -- --template react-ts'\n2. Navigate to client directory\n3. Install dependencies with 'npm install'\n4. Update package.json to use React 18.2.0 and other latest compatible dependencies\n5. Configure Vite (vite.config.ts) for optimal React setup\n<info added on 2025-07-04T22:18:41.021Z>\nCOMPLETED - All steps executed successfully:\n\n✅ Created React client using Vite template with React + TypeScript\n✅ Installed latest dependencies (React 19.1.0, TypeScript 5.8.3, Vite 7.0.2, ESLint 9.30.1) with 0 vulnerabilities\n✅ Enhanced Vite configuration with path aliases (@, @components, @pages), dev server on port 3000, API proxy to localhost:3001, optimized build with manual chunks, and sourcemap generation\n✅ Verified build process and TypeScript compilation working\n✅ Confirmed workspace integration - client properly recognized by npm with all workspace commands functional from root\n✅ React client ready for development with modern tooling and optimized configuration\n</info added on 2025-07-04T22:18:41.021Z>",
+            "status": "done",
+            "testStrategy": "Run 'npm run dev' in client directory and verify the React application starts correctly"
+          },
+          {
+            "id": 4,
+            "title": "Initialize Server with NestJS 10",
+            "description": "Set up the server-side application using NestJS 10.",
+            "dependencies": [
+              2
+            ],
+            "details": "1. Run 'nest new server' to create a new NestJS project\n2. Navigate to server directory\n3. Update package.json to use NestJS 10.0.0 and other latest compatible dependencies\n4. Configure tsconfig.json for stricter TypeScript settings\n5. Set up basic module structure (app.module.ts, main.ts)\n<info added on 2025-07-04T22:22:40.263Z>\n✅ COMPLETED - All setup steps successfully executed:\n\n- Created NestJS server project using CLI with npm package manager\n- Upgraded to NestJS 11.1.3 with TypeScript 5.8.3 and latest dependencies\n- Enhanced tsconfig.json with strict mode, path aliases (@/, @modules/, @common/), and stricter compiler options (noImplicitReturns, noUnusedLocals, exactOptionalPropertyTypes)\n- Configured main.ts for Ocean Freight Logistics Platform on port 3001 with '/api' global prefix and CORS enabled for localhost:3000\n- Updated app controller/service with health check endpoint and platform metadata\n- Verified build process and workspace integration - both client and server workspaces properly recognized\n- Server ready for development with modern tooling and strict TypeScript configuration\n</info added on 2025-07-04T22:22:40.263Z>",
+            "status": "done",
+            "testStrategy": "Run 'npm run start:dev' in server directory and verify the NestJS application starts correctly"
+          },
+          {
+            "id": 5,
+            "title": "Configure ESLint and Prettier",
+            "description": "Set up ESLint with TypeScript rules and Prettier for code formatting across the monorepo.",
+            "dependencies": [
+              3,
+              4
+            ],
+            "details": "1. Install ESLint 8.42.0 and Prettier 2.8.8 as dev dependencies in root\n2. Create .eslintrc.js with TypeScript and React rules\n3. Create .prettierrc with project-wide formatting rules\n4. Add lint and format scripts to root package.json\n5. Configure VS Code settings for ESLint and Prettier integration\n<info added on 2025-07-04T22:26:45.244Z>\nCOMPLETION STATUS: ✅ DONE\n\nAll linting and formatting setup completed successfully:\n\n- Installed ESLint 9.30.1 and Prettier 3.6.2 with TypeScript support and integration plugins as dev dependencies at root level\n- Created modern ESLint flat config (eslint.config.mjs) with TypeScript, React, and NestJS-specific rules plus proper workspace configurations\n- Configured Prettier with consistent formatting rules (.prettierrc) and comprehensive ignore patterns (.prettierignore)\n- Fixed all ESLint errors including floating promise handling in server main.ts and test file corrections\n- Added format:check script to root package.json for CI/CD integration\n- Verified full functionality: ESLint runs error-free, Prettier formats 15 files successfully, all tests pass (2/2)\n- Code quality enforcement now active across both client and server workspaces\n</info added on 2025-07-04T22:26:45.244Z>",
+            "status": "done",
+            "testStrategy": "Run lint and format scripts, verify no errors and consistent code style across the project"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Configure Frontend Development Environment",
+        "description": "Set up the React frontend with TypeScript, Vite, Material-UI, TanStack Query, and other specified libraries.",
+        "details": "1. Navigate to client/ directory\n2. Install dependencies:\n   npm install @mui/material @emotion/react @emotion/styled @tanstack/react-query axios date-fns lucide-react @mui/icons-material\n3. Set up Vite config for React and TypeScript\n4. Configure Material-UI theme with ocean-inspired colors\n5. Set up TanStack Query (React Query) for state management\n6. Create basic folder structure: components/, pages/, hooks/, utils/\n7. Set up Axios instance with base URL\n8. Configure ESLint and Prettier for React and TypeScript\n9. Create a basic App component with Material-UI ThemeProvider",
+        "testStrategy": "Create a simple test component to verify that React, Material-UI, and TanStack Query are working correctly. Run 'npm run dev' to ensure the development server starts without errors.",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 3,
+        "title": "Configure Backend Development Environment",
+        "description": "Set up the NestJS backend with TypeScript, Prisma ORM, SQLite for development, and configure the initial API structure.",
+        "details": "1. Navigate to server/ directory\n2. Install dependencies:\n   npm install @nestjs/common @nestjs/core @nestjs/platform-express prisma @prisma/client zod\n3. Set up Prisma with SQLite for development:\n   npx prisma init --datasource-provider sqlite\n4. Create initial Prisma schema based on the provided data model\n5. Set up NestJS modules for CargoOwners, ShippingCompanies, and FreightBookings\n6. Configure basic controller structure for each module\n7. Implement Zod schemas for request validation\n8. Set up initial database migration:\n   npx prisma migrate dev --name init\n9. Create a seed script for initial data\n10. Configure ESLint and Prettier for NestJS and TypeScript",
+        "testStrategy": "Create unit tests for each module. Run 'npm run start:dev' to ensure the NestJS server starts without errors. Test database connection and initial migrations.",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 4,
+        "title": "Implement Cargo Owner API Endpoints",
+        "description": "Develop the API endpoints for Cargo Owner-related operations as specified in the PRD.",
+        "details": "1. In the CargoOwners module, implement the following endpoints:\n   - POST /cargo-owners (Create cargo owner)\n   - GET /cargo-owners/:id (Get cargo owner details)\n   - GET /cargo-owners (List all cargo owners)\n2. Use Prisma Client for database operations\n3. Implement request validation using Zod schemas\n4. Add pagination to the list endpoint using query parameters\n5. Implement proper error handling and response formatting\n6. Add logging for each API call\n7. Implement unit tests for each endpoint using Jest and Supertest",
+        "testStrategy": "Create comprehensive unit tests for each endpoint. Test various scenarios including valid requests, invalid data, and edge cases. Verify pagination works correctly. Use Postman or curl to manually test each endpoint.",
+        "priority": "medium",
+        "dependencies": [
+          3
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 5,
+        "title": "Implement Shipping Company API Endpoints",
+        "description": "Develop the API endpoints for Shipping Company-related operations as specified in the PRD.",
+        "details": "1. In the ShippingCompanies module, implement the following endpoints:\n   - POST /shipping-companies (Create shipping company)\n   - GET /shipping-companies/:id (Get company details)\n   - GET /shipping-companies (List all companies)\n2. Use Prisma Client for database operations\n3. Implement request validation using Zod schemas\n4. Add pagination to the list endpoint using query parameters\n5. Implement proper error handling and response formatting\n6. Add logging for each API call\n7. Implement unit tests for each endpoint using Jest and Supertest",
+        "testStrategy": "Create comprehensive unit tests for each endpoint. Test various scenarios including valid requests, invalid data, and edge cases. Verify pagination works correctly. Use Postman or curl to manually test each endpoint.",
+        "priority": "medium",
+        "dependencies": [
+          3
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 6,
+        "title": "Implement Freight Booking API Endpoints",
+        "description": "Develop the API endpoints for Freight Booking-related operations as specified in the PRD.",
+        "details": "1. In the FreightBookings module, implement the following endpoints:\n   - POST /freight-bookings (Create booking availability)\n   - GET /freight-bookings/:id (Get booking details)\n   - GET /freight-bookings (List available bookings)\n   - POST /freight-bookings/:id/book (Book freight space)\n   - POST /freight-bookings/:id/cancel (Cancel booking)\n2. Use Prisma Client for database operations\n3. Implement request validation using Zod schemas\n4. Add pagination and filtering to the list endpoint\n5. Implement proper error handling and response formatting\n6. Add logging for each API call\n7. Implement unit tests for each endpoint using Jest and Supertest\n8. Ensure proper handling of booking states (available, booked, cancelled)",
+        "testStrategy": "Create comprehensive unit tests for each endpoint. Test various scenarios including successful bookings, cancellations, overbooking prevention, and invalid operations. Verify pagination and filtering work correctly. Use Postman or curl to manually test the booking workflow.",
+        "priority": "high",
+        "dependencies": [
+          3,
+          4,
+          5
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 7,
+        "title": "Design and Implement Database Schema",
+        "description": "Create the database schema using Prisma ORM based on the core entities defined in the PRD.",
+        "details": "1. Refine the Prisma schema based on the core entities:\n   - CargoOwner\n   - ShippingCompany\n   - FreightBooking\n2. Add necessary relations between entities\n3. Implement enum types for status fields\n4. Add indexes for frequently queried fields\n5. Set up cascading deletes where appropriate\n6. Create a migration for the schema:\n   npx prisma migrate dev --name core_entities\n7. Update the seed script to populate the database with sample data\n8. Implement database sharding logic using the 'shard' field\n9. Create helper functions for shard management",
+        "testStrategy": "Verify the schema by inspecting the generated Prisma client. Run migrations and seed the database. Write tests to ensure all relations work correctly. Test shard management functions with various data sets.",
+        "priority": "high",
+        "dependencies": [
+          3
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 8,
+        "title": "Implement User Authentication and Authorization",
+        "description": "Set up user authentication for Cargo Owners and Shipping Companies, and implement role-based access control.",
+        "details": "1. Install required packages:\n   npm install @nestjs/jwt passport passport-jwt bcrypt\n2. Implement JWT-based authentication strategy\n3. Create AuthModule and AuthService\n4. Implement login endpoints for Cargo Owners and Shipping Companies\n5. Create guards for role-based access control\n6. Implement password hashing using bcrypt\n7. Add refresh token functionality\n8. Implement logout mechanism\n9. Create decorators for user roles\n10. Update existing endpoints to use authentication and authorization",
+        "testStrategy": "Write unit tests for AuthService and guards. Test login, logout, and token refresh flows. Verify that protected routes are inaccessible without proper authentication. Test role-based access control for different user types.",
+        "priority": "high",
+        "dependencies": [
+          3,
+          4,
+          5
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 9,
+        "title": "Implement Frontend Routing and Layout",
+        "description": "Set up the basic routing structure and layout components for the React frontend.",
+        "details": "1. Install react-router-dom (latest version: 6.12.1)\n2. Set up main routes:\n   - Dashboard\n   - Available Freight\n   - My Bookings\n   - Company Profile\n3. Create layout components:\n   - Header with navigation\n   - Sidebar (if needed)\n   - Footer\n4. Implement responsive design using Material-UI's Grid system\n5. Create placeholder pages for each main route\n6. Implement a 404 Not Found page\n7. Set up lazy loading for route components\n8. Implement protected routes for authenticated users\n9. Create a loading indicator for route transitions",
+        "testStrategy": "Write unit tests for routing logic. Manually test navigation and responsiveness across different screen sizes. Verify that protected routes redirect unauthenticated users correctly.",
+        "priority": "medium",
+        "dependencies": [
+          2
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 10,
+        "title": "Implement Dashboard Page",
+        "description": "Create the dashboard page with an overview of bookings and availability.",
+        "details": "1. Create DashboardPage component\n2. Implement API calls to fetch relevant data using TanStack Query\n3. Design and implement dashboard widgets:\n   - Booking summary\n   - Available capacity overview\n   - Recent activity\n4. Create reusable chart components using a library like recharts (latest version: 2.6.2)\n5. Implement responsive layout for dashboard widgets\n6. Add loading states and error handling for data fetching\n7. Implement refresh functionality for dashboard data\n8. Create unit tests for dashboard components and data fetching logic",
+        "testStrategy": "Write unit tests for individual dashboard components. Test data fetching and error handling. Manually verify the dashboard layout and responsiveness across different screen sizes.",
+        "priority": "medium",
+        "dependencies": [
+          2,
+          6,
+          9
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 11,
+        "title": "Implement Available Freight Page",
+        "description": "Create the page for browsing and filtering available freight space.",
+        "details": "1. Create AvailableFreightPage component\n2. Implement API calls to fetch available freight listings using TanStack Query\n3. Create a filterable and sortable data grid component\n4. Implement filter controls for routes, dates, and cargo type\n5. Add pagination support for large datasets\n6. Create a detailed view modal for individual freight listings\n7. Implement the booking process flow\n8. Add loading states and error handling\n9. Optimize performance for large datasets (e.g., virtualization)\n10. Implement unit tests for components and data fetching logic",
+        "testStrategy": "Write unit tests for filtering, sorting, and pagination logic. Test the booking process flow. Manually verify the user interface and responsiveness. Performance test with large datasets to ensure smooth operation.",
+        "priority": "high",
+        "dependencies": [
+          2,
+          6,
+          9
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 12,
+        "title": "Implement My Bookings Page",
+        "description": "Create the page for managing confirmed bookings.",
+        "details": "1. Create MyBookingsPage component\n2. Implement API calls to fetch user's bookings using TanStack Query\n3. Create a data grid component for displaying bookings\n4. Implement sorting and filtering functionality\n5. Add pagination support\n6. Create a detailed view modal for individual bookings\n7. Implement booking cancellation flow\n8. Add loading states and error handling\n9. Implement unit tests for components and data fetching logic",
+        "testStrategy": "Write unit tests for sorting, filtering, and cancellation logic. Test error handling for API calls. Manually verify the user interface and responsiveness. Test the cancellation flow with different booking statuses.",
+        "priority": "medium",
+        "dependencies": [
+          2,
+          6,
+          9
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 13,
+        "title": "Implement Company Profile Page",
+        "description": "Create the page for managing company information.",
+        "details": "1. Create CompanyProfilePage component\n2. Implement API calls to fetch and update company information\n3. Create form components for editing company details\n4. Implement form validation using a library like Formik (latest version: 2.4.1) and Yup (latest version: 1.2.0)\n5. Add image upload functionality for company logo\n6. Implement success and error notifications for form submissions\n7. Create a view-only mode for the profile\n8. Add loading states and error handling\n9. Implement unit tests for components and form logic",
+        "testStrategy": "Write unit tests for form validation and submission logic. Test image upload functionality. Manually verify the user interface and responsiveness. Test error handling for API calls and form submissions.",
+        "priority": "low",
+        "dependencies": [
+          2,
+          4,
+          5,
+          9
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 14,
+        "title": "Implement Search and Advanced Filtering",
+        "description": "Develop a comprehensive search and advanced filtering system for freight listings.",
+        "details": "1. Design and implement an advanced search component\n2. Create backend API endpoints for search and advanced filtering\n3. Implement full-text search on relevant fields\n4. Add support for multiple filter criteria (e.g., date ranges, cargo types, ports)\n5. Implement sorting options for search results\n6. Optimize search performance using database indexes\n7. Add support for saving and loading search preferences\n8. Implement type-ahead suggestions for search inputs\n9. Create unit tests for search and filtering logic",
+        "testStrategy": "Write unit tests for search and filtering algorithms. Performance test with large datasets. Manually verify search results and filtering accuracy. Test type-ahead suggestions and preference saving functionality.",
+        "priority": "medium",
+        "dependencies": [
+          6,
+          11
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 15,
+        "title": "Implement Real-time Updates",
+        "description": "Add real-time update functionality for freight availability and booking status changes.",
+        "details": "1. Set up WebSocket support in the NestJS backend using @nestjs/websockets\n2. Implement WebSocket gateway for real-time events\n3. Create a WebSocket service in the frontend using a library like socket.io-client (latest version: 4.6.2)\n4. Implement real-time updates for freight availability on the Available Freight page\n5. Add real-time notifications for booking status changes\n6. Implement reconnection logic for WebSocket disconnects\n7. Add support for real-time chat between Cargo Owners and Shipping Companies\n8. Optimize WebSocket message payload size\n9. Implement unit tests for WebSocket logic",
+        "testStrategy": "Write unit tests for WebSocket event handling. Test reconnection scenarios. Manually verify real-time updates across multiple clients. Performance test with a high volume of real-time events.",
+        "priority": "low",
+        "dependencies": [
+          6,
+          11,
+          12
+        ],
+        "status": "pending",
+        "subtasks": []
+      }
+    ],
+    "metadata": {
+      "created": "2025-07-04T21:59:20.552Z",
+      "updated": "2025-07-04T22:31:41.810Z",
+      "description": "Tasks for master context"
+    }
+  }
+}

@@ -1,0 +1,217 @@
+## Product Requirements Document (PRD)
+### 1. Project Overview
+
+**Product Name:** Ocean Freight Logistics Platform
+**Codename:** Blue Ocean
+**Type:** Web-based logistics marketplace
+**Target Users:** Shipping companies, freight brokers, and cargo owners
+
+**Vision Statement:** Create the leading digital marketplace for ocean freight logistics, connecting cargo owners with shipping carriers to optimize maritime transportation.
+
+### 2. Business Context
+
+**Primary Market:** Maritime shipping industry
+**Core Problem:** Fragmented ocean freight booking process with limited visibility into available shipping capacity
+**Solution:** Centralized platform where cargo owners can book freight space and shipping companies can manage their vessel capacity
+
+**Key Stakeholders:**
+- **Cargo Owners:** Businesses needing to ship goods via ocean freight
+- **Shipping Companies:** Vessel operators with available cargo space
+- **Freight Brokers:** Intermediaries facilitating shipments
+
+### 3. Technical Architecture
+
+**Monorepo Structure:**
+```
+blue-ocean-logistics/
+├── client/          # React frontend
+├── server/          # NestJS backend API
+├── test/           # E2E tests
+└── assets/         # Static assets
+```
+
+**Technology Stack:**
+
+**Frontend (Client):**
+- **Framework:** React 18+ with TypeScript
+- **Build Tool:** Vite
+- **UI Library:** Material-UI (MUI) v5
+- **State Management:** TanStack Query (React Query)
+- **HTTP Client:** Axios
+- **Date Handling:** date-fns
+- **Icons:** Lucide React + MUI Icons
+- **Styling:** Emotion (CSS-in-JS)
+
+**Backend (Server):**
+- **Framework:** NestJS with TypeScript
+- **Database:** SQLite (development) / PostgreSQL (production)
+- **ORM:** Prisma
+- **Validation:** Zod schemas
+- **API Pattern:** RESTful with pagination
+
+**Development Tools:**
+- **Linting:** ESLint with TypeScript rules
+- **Testing:** Jest + Supertest (E2E)
+- **Package Manager:** npm
+- **Database Migrations:** Prisma migrate
+
+### 4. Data Model
+
+**Core Entities:**
+
+```typescript
+// Cargo Owner
+interface CargoOwner {
+  id: number;
+  companyName: string;
+  contactEmail: string;
+  status: number; // 0=inactive, 1=active
+  shard: number;  // For scaling
+}
+
+// Shipping Company
+interface ShippingCompany {
+  id: number;
+  companyName: string;
+  fleetSize: number;
+  status: number;
+  shard: number;
+}
+
+// Freight Booking
+interface FreightBooking {
+  id: number;
+  createdAt: string;
+  departureDate: string;
+  arrivalDate: string;
+  originPort: string;
+  destinationPort: string;
+  cargoType: string;
+  containerCount: number;
+  shippingCompanyId: number;
+  cargoOwnerId: number | null;
+  bookedAt: string | null;
+  cancelledAt: string | null;
+  shard: number;
+}
+```
+
+### 5. Core Features
+
+**5.1 Cargo Owner Features:**
+- View available freight bookings
+- Book freight space for shipments
+- Manage booked shipments
+- Cancel bookings (if not yet departed)
+- Filter by routes, dates, and cargo type
+
+**5.2 Shipping Company Features:**
+- Create freight availability listings
+- Manage vessel schedules
+- View booking requests
+- Update capacity and pricing
+
+**5.3 Platform Features:**
+- Real-time availability updates
+- Pagination for large datasets
+- Responsive mobile-friendly UI
+- Search and filtering capabilities
+
+### 6. API Specification
+
+**Base URL:** `http://localhost:3001/api`
+
+**Cargo Owners Endpoints:**
+- `POST /cargo-owners` - Create cargo owner
+- `GET /cargo-owners/:id` - Get cargo owner details
+- `GET /cargo-owners` - List all cargo owners
+
+**Shipping Companies Endpoints:**
+- `POST /shipping-companies` - Create shipping company
+- `GET /shipping-companies/:id` - Get company details
+- `GET /shipping-companies` - List all companies
+
+**Freight Bookings Endpoints:**
+- `POST /freight-bookings` - Create booking availability
+- `GET /freight-bookings/:id` - Get booking details
+- `GET /freight-bookings` - List available bookings
+- `POST /freight-bookings/:id/book` - Book freight space
+- `POST /freight-bookings/:id/cancel` - Cancel booking
+
+### 7. User Interface Design
+
+**Design System:**
+- **Color Palette:** Ocean-inspired blues and teals
+- **Typography:** Modern, professional font stack
+- **Components:** Material Design principles
+- **Layout:** Responsive grid system
+- **Theme:** Light mode with subtle gradients
+
+**Key Pages:**
+1. **Dashboard:** Overview of bookings and availability
+2. **Available Freight:** Browse and filter available space
+3. **My Bookings:** Manage confirmed bookings
+4. **Company Profile:** Manage company information
+
+### 8. Development Setup
+
+**Project Structure:**
+```bash
+# Root package.json scripts
+npm run setup              # Install all dependencies
+npm run server:start:dev   # Start backend in dev mode
+npm run client:start:dev   # Start frontend in dev mode
+npm run build             # Build both client and server
+```
+
+**Database Setup:**
+```bash
+npx prisma migrate dev --name init
+npx prisma db seed
+```
+
+### 9. Success Metrics
+
+**Technical Metrics:**
+- API response time < 200ms
+- Frontend build time < 30 seconds
+- Test coverage > 80%
+- Zero critical security vulnerabilities
+
+**Business Metrics:**
+- User registration conversion rate
+- Booking completion rate
+- Platform utilization (bookings/available capacity)
+- User retention rate
+
+### 10. Future Enhancements
+
+**Phase 2 Features:**
+- Real-time tracking integration
+- Payment processing
+- Mobile applications
+- Advanced analytics dashboard
+- Multi-language support
+
+**Technical Improvements:**
+- Microservices architecture
+- Redis caching layer
+- WebSocket real-time updates
+- Advanced search with Elasticsearch
+
+### 11. Development Phases
+
+**Phase 1 (MVP - 4 weeks):**
+- Basic CRUD operations for all entities
+- Simple booking workflow
+- Responsive UI with core components
+
+**Phase 2 (Enhanced - 2 weeks):**
+- Advanced filtering and search
+- Email notifications
+- Enhanced UI/UX
+
+**Phase 3 (Scale - 2 weeks):**
+- Performance optimizations
+- Comprehensive testing
+- Production deployment setup
